@@ -1,0 +1,25 @@
+{
+  "name": "@jupyter-ai-contrib/jupyter-ai-magic-commands",
+  "version": "0.0.1",
+  "description": "Jupyter AI magics Python package. Not published on NPM.",
+  "private": true,
+  "homepage": "https://github.com/jupyter-ai-contrib/jupyter-ai-magic-commands",
+  "bugs": {
+    "url": "https://github.com/jupyter-ai-contrib/jupyter-ai-magic-commands/issues",
+    "email": "jupyter@googlegroups.com"
+  },
+  "license": "BSD-3-Clause",
+  "author": {
+    "name": "Project Jupyter",
+    "email": "jupyter@googlegroups.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jupyter-ai-contrib/jupyter-ai-magic-commands.git"
+  },
+  "scripts": {
+    "dev:install": "uv pip install -e \".[dev,all]\"",
+    "dev:uninstall": "uv pip uninstall jupyter_ai_magic_commands",
+    "install-from-src": "uv pip install ."
+  }
+}
