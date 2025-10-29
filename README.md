@@ -16,9 +16,11 @@ To install basic Jupyter AI from scratch using the package collection in https:/
 ```
 pip install jupyter-ai-router jupyter-ai-persona-manager jupyter-ai-jupyternaut
 
-tar -xvzf jupyter_ai_magic_commands-0.0.1.tar.gz
-
-pip install -e jupyter_ai_magic_commands-0.0.1
+git clone https://github.com/srdas/jupyter-ai-magic-commands.git
+cd jupyter-ai-magic-commands
+git switch first_magic
+cd ..
+pip install -e jupyter_ai_magic_commands
 ```
 
 ## Test
