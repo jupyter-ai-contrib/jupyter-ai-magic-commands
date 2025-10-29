@@ -20,7 +20,7 @@ git clone https://github.com/srdas/jupyter-ai-magic-commands.git
 cd jupyter-ai-magic-commands
 git switch first_magic
 cd ..
-pip install -e jupyter_ai_magic_commands
+pip install -e jupyter-ai-magic-commands
 ```
 
 ## Test
