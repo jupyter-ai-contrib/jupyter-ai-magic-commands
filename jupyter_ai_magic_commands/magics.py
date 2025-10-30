@@ -15,7 +15,7 @@ from IPython.display import HTML, JSON, Markdown, Math
 # from jupyter_ai.model_providers.model_list import CHAT_MODELS
 from jupyter_ai_litellm.model_list import CHAT_MODELS
 
-from ._version import __version__
+from . import __version__
 from .parsers import (
     CellArgs,
     DeleteArgs,
