@@ -1,4 +1,4 @@
-# @jupyter-ai-contrib/jupyter-ai-magic-commands
+# jupyter-ai-magic-commands
 
 Magics are currently provided for Jupyter AI via the package `jupyter-ai-magics` ([current version 2.31.6](https://pypi.org/project/jupyter-ai-magics)). This works with Jupyter AI v2 but will not work with the collection of extensions for v3 developed in https://github.com/jupyter-ai-contrib, which use `litellm` via the https://github.com/jupyter-ai-contrib/jupyter-ai-litellm repository. Therefore, we introduce an updated magics package, titled `jupyter_ai_magic_commands` (v0.0.1) for use with Jupyter AI v3.
 

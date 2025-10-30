@@ -1,10 +1,13 @@
 [build-system]
-requires = ["hatchling>=1.4.0", "hatch-nodejs-version"]
+requires = ["hatchling>=1.4.0"]
 build-backend = "hatchling.build"
 
 [project]
 name = "jupyter_ai_magic_commands"
 readme = "README.md"
+description = "Package providing Jupyter AI magic commands in IPython"
+authors = [{ name = "Project Jupyter", email = "jupyter@googlegroups.com" }]
+keywords = ["ipython", "ai", "magic-commands"]
 license = { file = "LICENSE" }
 requires-python = ">=3.9"
 classifiers = [
@@ -18,7 +21,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 
-dynamic = ["version", "description", "authors", "urls", "keywords"]
+dynamic = ["version"]
 
 dependencies = [
     "ipython",
@@ -27,6 +30,11 @@ dependencies = [
     "pydantic>=2.10.0,<3",
     "click>=8.1.0,<9",
 ]
+
+[project.urls]
+Documentation = "https://jupyter-ai.readthedocs.io/en/v3/"
+Source = "https://github.com/jupyter-ai-contrib/jupyter-ai-magic-commands"
+Tracker = "https://github.com/jupyter-ai-contrib/jupyter-ai-magic-commands/issues"
 
 [project.optional-dependencies]
 dev = [
@@ -45,10 +53,4 @@ all = [
 ]
 
 [tool.hatch.version]
-source = "nodejs"
-
-[tool.hatch.metadata.hooks.nodejs]
-fields = ["description", "authors", "urls"]
-
-[tool.hatch.build.hooks.version]
-path = "jupyter_ai_magic_commands/_version.py"
+path = "jupyter_ai_magic_commands/__init__.py"

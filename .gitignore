@@ -214,3 +214,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Auto-generated _version.py module
+jupyter_ai_magic_commands/_version.py
