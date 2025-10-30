@@ -15,14 +15,5 @@ To install basic Jupyter AI from scratch using the package collection in https:/
 
 ```
 pip install jupyter-ai-router jupyter-ai-persona-manager jupyter-ai-jupyternaut
-
-git clone https://github.com/srdas/jupyter-ai-magic-commands.git
-cd jupyter-ai-magic-commands
-git switch first_magic
-cd ..
-pip install -e jupyter-ai-magic-commands
+pip install jupyter-ai-magic-commands
 ```
-
-## Test
-
-To test the new package, try the code in the notebook (attached): `magics_litellm.ipynb`
