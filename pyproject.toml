@@ -29,6 +29,7 @@ dependencies = [
     # - See: https://docs.pydantic.dev/latest/api/config/#pydantic.config.ConfigDict.protected_namespaces
     "pydantic>=2.10.0,<3",
     "click>=8.1.0,<9",
+    "jupyter_ai_litellm>=0.0.2",
 ]
 
 [project.urls]
