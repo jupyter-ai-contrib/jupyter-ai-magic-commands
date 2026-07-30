@@ -2,6 +2,26 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.0.4
+
+([Full Changelog](https://github.com/jupyter-ai-contrib/jupyter-ai-magic-commands/compare/v0.0.3...00acf8e8558467d5542f227c51a5d7ef2d561052))
+
+### Enhancements made
+
+- use shlex to split up line [#11](https://github.com/jupyter-ai-contrib/jupyter-ai-magic-commands/pull/11) ([@joequant](https://github.com/joequant), [@srdas](https://github.com/srdas))
+- add magic command [#10](https://github.com/jupyter-ai-contrib/jupyter-ai-magic-commands/pull/10) ([@joequant](https://github.com/joequant), [@srdas](https://github.com/srdas))
+
+### Contributors to this release
+
+The following people contributed discussions, new ideas, code and documentation contributions, and review.
+See [our definition of contributors](https://github-activity.readthedocs.io/en/latest/use/#how-does-this-tool-define-contributions-in-the-reports).
+
+([GitHub contributors page for this release](https://github.com/jupyter-ai-contrib/jupyter-ai-magic-commands/graphs/contributors?from=2026-03-24&to=2026-07-30&type=c))
+
+@joequant ([activity](https://github.com/search?q=repo%3Ajupyter-ai-contrib%2Fjupyter-ai-magic-commands+involves%3Ajoequant+updated%3A2026-03-24..2026-07-30&type=Issues)) | @srdas ([activity](https://github.com/search?q=repo%3Ajupyter-ai-contrib%2Fjupyter-ai-magic-commands+involves%3Asrdas+updated%3A2026-03-24..2026-07-30&type=Issues))
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.0.3
 
 ([Full Changelog](https://github.com/jupyter-ai-contrib/jupyter-ai-magic-commands/compare/v0.0.2...92c7982e241dd560945736791871552fee57ecbb))
@@ -18,8 +38,6 @@ See [our definition of contributors](https://github-activity.readthedocs.io/en/l
 ([GitHub contributors page for this release](https://github.com/jupyter-ai-contrib/jupyter-ai-magic-commands/graphs/contributors?from=2025-10-30&to=2026-03-24&type=c))
 
 @dlqqq ([activity](https://github.com/search?q=repo%3Ajupyter-ai-contrib%2Fjupyter-ai-magic-commands+involves%3Adlqqq+updated%3A2025-10-30..2026-03-24&type=Issues))
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.0.2
 
