@@ -385,12 +385,12 @@ class AiMagics(Magics):
             # Add API key from .env if api_key_name is provided
             if args.api_key_name:
                 # Retrieve the actual API key from the .env file
-                api_key_name_value = os.getenv(args.api_key_name)
-                if not api_key_name_value:
+                api_key = os.getenv(args.api_key_name)
+                if not api_key:
                     error_msg = f"API key '{args.api_key_name}' not found in .env file."
                     print(error_msg, file=sys.stderr)
                     return
-                completion_args["api_key_name"] = api_key_name_value
+                completion_args["api_key"] = api_key
 
             response = litellm.completion(**completion_args)
             # Extract output text from response
