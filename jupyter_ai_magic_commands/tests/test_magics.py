@@ -1,6 +1,8 @@
 import os
+from types import SimpleNamespace
 from unittest.mock import Mock, patch
 
+import litellm
 import pytest
 from IPython import InteractiveShell
 from IPython.core.display import Markdown
@@ -42,6 +44,33 @@ def test_non_default_model_cell(ip):
         assert mock_run.called
         cell_args = mock_run.call_args.args[0]
         assert cell_args.model_id == "some-different-llm"
+
+
+def test_alias_api_key_name_passes_resolved_api_key_to_litellm(ip):
+    ip.extension_manager.load_extension("jupyter_ai_magic_commands")
+    response = SimpleNamespace(
+        choices=[SimpleNamespace(message=SimpleNamespace(content="Leet code"))]
+    )
+
+    with (
+        patch.dict(os.environ, {"CUSTOM_API_KEY": "secret"}),
+        patch.object(litellm, "completion", return_value=response) as completion,
+    ):
+        ip.run_line_magic(
+            "ai",
+            "alias custom openai/custom-model "
+            "--api-base https://example.test/v1 "
+            "--api-key-name CUSTOM_API_KEY",
+        )
+        ip.run_cell_magic("ai", "custom", cell="Write code for me please")
+
+    completion.assert_called_once_with(
+        model="openai/custom-model",
+        messages=[{"role": "user", "content": "Write code for me please"}],
+        stream=False,
+        api_base="https://example.test/v1",
+        api_key="secret",
+    )
 
 
 def test_default_model_error_line(ip):
