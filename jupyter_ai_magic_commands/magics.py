@@ -309,7 +309,7 @@ class AiMagics(Magics):
         messages = []
 
         # Add conversation history if available
-        if self.transcript:
+        if self.transcript and self.max_history:
             messages.extend(self.transcript[-2 * self.max_history :])
 
         # If --eval flag is set, execute the cell code and use the result as prompt
@@ -468,7 +468,9 @@ class AiMagics(Magics):
         self.transcript.append({"role": "assistant", "content": output})
         # Keep only the most recent `self.max_history * 2` messages
         max_len = self.max_history * 2
-        if len(self.transcript) > max_len:
+        if max_len == 0:
+            self.transcript = []
+        elif len(self.transcript) > max_len:
             self.transcript = self.transcript[-max_len:]
 
     def handle_help(self, _: HelpArgs) -> None:
