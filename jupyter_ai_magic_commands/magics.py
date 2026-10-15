@@ -302,8 +302,9 @@ class AiMagics(Magics):
         # Interpolate local variables into prompt.
         # For example, if a user runs `a = "hello"` and then runs `%%ai {a}`, it
         # should be equivalent to running `%%ai hello`.
-        ip = self.shell
-        prompt = prompt.format_map(FormatDict(ip.user_ns))
+        if args.interpolate:
+            ip = self.shell
+            prompt = prompt.format_map(FormatDict(ip.user_ns))
 
         # Prepare messages for the model
         messages = []

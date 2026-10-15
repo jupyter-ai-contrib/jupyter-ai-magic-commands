@@ -48,6 +48,7 @@ class CellArgs(BaseModel):
     format: FORMAT_CHOICES_TYPE
     model_parameters: Optional[str] = None
     eval: bool = False
+    interpolate: bool = True
     # The following parameters are required only for SageMaker models
     region_name: Optional[str] = None
     request_schema: Optional[str] = None
@@ -187,6 +188,13 @@ def verify_json_value(ctx, param, value):
     default=False,
     help="Execute the cell code and pass the result to the AI model.",
 )
+
+@click.option(
+    "--interpolate/--no-interpolate",
+    default=True,
+    help="Interpolate variable before running the AI model."
+)
+
 @click.pass_context
 def cell_magic_parser(context: click.Context, **kwargs):
     """
