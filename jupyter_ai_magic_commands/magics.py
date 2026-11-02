@@ -362,15 +362,28 @@ class AiMagics(Magics):
             # Return output given the format
             return self.display_output(output, args.format, metadata)
 
-        if model_id not in CHAT_MODELS and model_id in self.aliases:
+        is_alias = model_id in self.aliases
+        if is_alias:
             alias_config = self.aliases[model_id]
             model_id = alias_config["target"]
             # Use stored api_base and api_key_name if not provided in current call
-            if not args.api_base and alias_config["api_base"]:
+            if not args.api_base and alias_config.get("api_base"):
                 args.api_base = alias_config["api_base"]
-            if not args.api_key_name and alias_config["api_key_name"]:
+            if not args.api_key_name and alias_config.get("api_key_name"):
                 args.api_key_name = alias_config["api_key_name"]
-        elif model_id not in CHAT_MODELS:
+
+        # Validate model_id: accept models in CHAT_MODELS, aliases, or models with a known LiteLLM provider prefix
+        is_known_model = is_alias or (model_id in CHAT_MODELS)
+        if not is_known_model and "/" in model_id:
+            provider = model_id.split("/", 1)[0]
+            try:
+                from litellm import provider_list
+
+                is_known_model = provider in provider_list
+            except (ImportError, AttributeError):
+                is_known_model = False
+
+        if not is_known_model:
             error_msg = f"Model ID '{model_id}' is not a known model or alias. Run '%ai list' to see available models and aliases."
             print(error_msg, file=sys.stderr)  # Log to stderr
             return

@@ -143,3 +143,35 @@ def test_display_output_strips_code_fences(ip, output, expected):
     ai_magics.display_output(output, "code", {})
 
     ip.set_next_input.assert_called_once_with(expected, replace=False)
+
+
+def test_dynamic_provider_model_allowed(ip):
+    ip.extension_manager.load_extension("jupyter_ai_magic_commands")
+    with (
+        patch("jupyter_ai_magic_commands.magics.CHAT_MODELS", ["openai/gpt-4o"]),
+        patch("litellm.provider_list", ["ollama", "openai", "vllm"]),
+        patch("jupyter_ai_magic_commands.magics.litellm.completion") as completion,
+    ):
+        completion.return_value.choices = [Mock(message=Mock(content="Ollama response"))]
+        result = ip.run_cell_magic(
+            "ai",
+            "ollama/custom-llama3",
+            cell="Test prompt",
+        )
+        completion.assert_called_once()
+        assert completion.call_args.kwargs["model"] == "ollama/custom-llama3"
+    assert isinstance(result, Markdown)
+    assert result.data == "Ollama response"
+
+
+def test_unknown_model_rejected(ip, capsys):
+    ip.extension_manager.load_extension("jupyter_ai_magic_commands")
+    with (
+        patch("jupyter_ai_magic_commands.magics.CHAT_MODELS", ["openai/gpt-4o"]),
+        patch("litellm.provider_list", ["ollama", "openai"]),
+        patch("jupyter_ai_magic_commands.magics.litellm.completion") as completion,
+    ):
+        ip.run_cell_magic("ai", "completely_unknown_model", cell="Test prompt")
+        completion.assert_not_called()
+        captured = capsys.readouterr()
+        assert "is not a known model or alias" in captured.err
